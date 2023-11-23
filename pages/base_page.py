@@ -1,6 +1,7 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.common.exceptions import NoSuchElementException
 
+
 class BasePage():
     
     def __init__(self, browser : WebDriver, url, timeout=10):
