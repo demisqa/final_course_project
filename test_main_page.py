@@ -3,7 +3,6 @@ from pages.login_page import LoginPage
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
-
 def test_guest_can_go_to_login_page(browser : WebDriver):
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
     page = MainPage(browser, link)
