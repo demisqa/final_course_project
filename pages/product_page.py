@@ -15,20 +15,29 @@ class ProductPage(BasePage):
             return float(match.group())
         else:
             return None
-
-
-    def compare_price_of_added_product_to_basket(self):
+    
+    def get_price(self):
         product_price_text = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         product_price = self.extract_numeric_value(product_price_text)
+        return product_price
+    
+    def get_price_in_basket(self):
         basket_price_text = self.browser.find_element(*ProductPageLocators.BASKET_PRICE).text
         basket_price = self.extract_numeric_value(basket_price_text)
+        return basket_price
+    
+    def get_product_name(self):
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        return product_name
 
+    def get_product_name_in_basket(self):
+        basket_product_name = self.browser.find_element(*ProductPageLocators.BASKET_PRODUCT_NAME).text
+        return basket_product_name
+
+    def compare_price_of_added_product_to_basket(self, product_price, basket_price):
         assert product_price == basket_price, f'Product price {product_price} '\
               f'do not equal price in basket {basket_price}'
     
-    def compare_name_of_added_product_to_basket(self):
-        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        basket_product_name = self.browser.find_element(*ProductPageLocators.BASKET_PRODUCT_NAME).text
-        
+    def compare_name_of_added_product_to_basket(self, product_name, basket_product_name):
         assert product_name == basket_product_name, f'Product name {product_name} '\
               f'do not equal name in basket {basket_product_name}'
