@@ -41,3 +41,11 @@ class ProductPage(BasePage):
     def compare_name_of_added_product_to_basket(self, product_name, basket_product_name):
         assert product_name == basket_product_name, f'Product name {product_name} '\
               f'do not equal name in basket {basket_product_name}'
+        
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE),\
+            "Success message is presented, but should not be"
+    
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE),\
+            "Success message is presented, but should disappear"
