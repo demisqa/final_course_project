@@ -4,7 +4,6 @@ import re
 
 
 class ProductPage(BasePage):
-    
     def add_product_to_basket(self):
         product_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         product_button.click()
