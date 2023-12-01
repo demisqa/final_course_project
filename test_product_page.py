@@ -1,11 +1,13 @@
+from random import randint
 import pytest
+import time
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
-class TestProductPage():
+class TestGuestAddToBasketFromProductPage():
     @pytest.mark.parametrize('link',
         [f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{i}"
         if i!=7 else pytest.param(7, marks=pytest.mark.xfail(reason="current offer does not work"))
@@ -41,6 +43,33 @@ class TestProductPage():
         product_page.open()
         product_page.add_product_to_basket()
         product_page.should_disappear_success_message()
+
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser : WebDriver):
+        link = "https://selenium1py.pythonanywhere.com/accounts/login/"
+        email = str(time.time()) + "@fakemail.org"
+        password = str(randint(1,10000)) + "securepassword"
+        login_page = LoginPage(browser, link)
+        login_page.open()
+        login_page.register_new_user(email, password)
+        login_page.should_be_authorized_user()
+        
+    def test_user_can_add_product_to_basket(self, browser : WebDriver):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.add_product_to_basket()
+        product_page.compare_price_of_added_product_to_basket(product_page.get_price(),\
+                                                            product_page.get_price_in_basket())
+        product_page.compare_name_of_added_product_to_basket(product_page.get_product_name(),\
+                                                            product_page.get_product_name_in_basket())
+    
+    def test_user_cant_see_success_message(self, browser : WebDriver):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.should_not_be_success_message()
 
 @pytest.mark.login_guest
 class TestLoginFromProductPage():
