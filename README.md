@@ -22,7 +22,9 @@ You can choose locale of the site, where tests will be run by the command:
 Example:
 pytest --browser=firefox --language="uk" test_main_page.py
 
-Also, for run tests in Firefox browser you need:
+Commands --browser_name and --language have default values "chrome" and "en", in case when we skipped these commands.
+
+Also, it's required to do some steps:
 
 1. Create GitHub token on your GitHub (Settings -> Developer setting -> Personal Access Tokens -> Generate)
 2. Create .env on the root of this project (do not forget to add this file to .gitignore)

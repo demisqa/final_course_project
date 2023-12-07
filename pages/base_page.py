@@ -32,7 +32,7 @@ class BasePage():
 
     def is_element_present(self, by, value, timeout=4):
         try:
-            WebDriverWait(self.browser, timeout).until(EC.visibility_of_element_located((by, value)))
+            WebDriverWait(self.browser, timeout, 1).until(EC.visibility_of_element_located((by, value)))
         except (TimeoutException):
             print("Element not found")
             return False
