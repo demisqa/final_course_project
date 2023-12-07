@@ -1,6 +1,6 @@
-from random import randint
-import pytest
 import time
+import pytest
+from random import randint
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
@@ -18,12 +18,13 @@ class TestGuestAddToBasketFromProductPage():
         product_page.open()
         product_page.add_product_to_basket()
         product_page.solve_quiz_and_get_code()
+        product_page.should_be_all_adding_messages()
         product_page.compare_price_of_added_product_to_basket(product_page.get_price(),\
                                                             product_page.get_price_in_basket())
         product_page.compare_name_of_added_product_to_basket(product_page.get_product_name(),\
                                                             product_page.get_product_name_in_basket())
 
-    @pytest.mark.xfail(reason="failed according to task")
+    @pytest.mark.xfail(reason="failed according to scenario")
     def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser : WebDriver):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
         product_page = ProductPage(browser, link)
@@ -37,7 +38,7 @@ class TestGuestAddToBasketFromProductPage():
         product_page.open()
         product_page.should_not_be_success_message()
 
-    @pytest.mark.xfail(reason="failed according to task")
+    @pytest.mark.xfail(reason="failed according to scenario")
     def test_message_disappeared_after_adding_product_to_basket(self, browser : WebDriver):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
         product_page = ProductPage(browser, link)
@@ -62,6 +63,7 @@ class TestUserAddToBasketFromProductPage():
         product_page = ProductPage(browser, link)
         product_page.open()
         product_page.add_product_to_basket()
+        product_page.should_be_all_adding_messages()
         product_page.compare_price_of_added_product_to_basket(product_page.get_price(),\
                                                             product_page.get_price_in_basket())
         product_page.compare_name_of_added_product_to_basket(product_page.get_product_name(),\

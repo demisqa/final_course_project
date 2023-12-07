@@ -1,4 +1,6 @@
+import os
 import pytest
+from dotenv import load_dotenv
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
@@ -19,6 +21,9 @@ def browser(request) -> webdriver:
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
     browser = None
+    load_dotenv()
+    os.environ['GH_TOKEN'] = os.getenv('GH_TOKEN')
+    
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         options = Options()

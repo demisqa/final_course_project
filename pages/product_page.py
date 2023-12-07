@@ -1,6 +1,6 @@
+import re
 from .base_page import BasePage
 from .locators import ProductPageLocators
-import re
 
 
 class ProductPage(BasePage):
@@ -48,3 +48,15 @@ class ProductPage(BasePage):
     def should_disappear_success_message(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE),\
             "Success message is presented, but should disappear"
+        
+    def should_be_basket_name_message(self):
+        assert self.is_element_present(*ProductPageLocators.BASKET_PRODUCT_NAME, timeout=6),\
+            "Name of added product to basket is not available on message"
+
+    def should_be_basket_price_message(self):
+        assert self.is_element_present(*ProductPageLocators.BASKET_PRICE, timeout=6),\
+            "Price of added product to basket is not available on message"
+    
+    def should_be_all_adding_messages(self):
+        self.should_be_basket_name_message()
+        self.should_be_basket_price_message()

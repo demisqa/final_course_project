@@ -31,10 +31,10 @@ class BasePage():
     def should_be_basket_link(self):
         assert self.is_element_present(*BasePageLocators.BASKET_LINK), "Basket link is not presented"
 
-    def is_element_present(self, by, value):
+    def is_element_present(self, by, value, timeout=4):
         try:
-            self.browser.find_element(by, value)
-        except (NoSuchElementException):
+            WebDriverWait(self.browser, timeout).until(EC.visibility_of_element_located((by, value)))
+        except (TimeoutException):
             return False
         return True
     
