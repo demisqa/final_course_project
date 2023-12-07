@@ -1,7 +1,6 @@
 import math
 from .locators import BasePageLocators
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
@@ -35,6 +34,7 @@ class BasePage():
         try:
             WebDriverWait(self.browser, timeout).until(EC.visibility_of_element_located((by, value)))
         except (TimeoutException):
+            print("Element not found")
             return False
         return True
     
