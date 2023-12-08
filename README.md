@@ -1,28 +1,64 @@
+## *Description:* 
+There is a mini-project with some UI tests using POM pattern.
 Link to the tested site: "https://selenium1py.pythonanywhere.com".
 
-There are some UI tests using POM pattern.
+____
+### Technologies: 
+Python 3.11.5
+Pytest 7.4.3
+Selenium 4.15.2
+Webdriver Manager 4.0.1
+python-dotenv 1.0.0
 
-Version of Python : 3.11.5
+
+____
+### How to run:
 
 To run this mini-project you have to create virtual environment and install all requirements from the
 file "requirements.txt". You can do it by the commands:
 
-python3 -m venv <venv> to create virtual environment, where <venv> is name of your virtual environment;
-source <venv>/bin/activate to activate your virtual environment;
-pip3 install -r requirements.txt to install requirements.
+```
+python3 -m venv <venv>
+``` to create virtual environment, where <venv> is name of your virtual environment;
+
+```
+source <venv>/bin/activate
+``` to activate your virtual environment;
+
+```
+pip3 install -r requirements.txt
+```  to install requirements.
 
 I use webdriver-manger from pip3, so you don't need to set a path to your WebDriver.
 
 You can choose browser (Chrome/Firefox) for running tests by the command:
---browser_name=chrome or --browser_name=firefox
+
+```
+--browser_name=chrome
+```
+
+```
+--browser_name=firefox
+```
 
 You can choose locale of the site, where tests will be run by the command:
---language="uk" or --language="es" etc. All languages you can find on site.
+
+```
+--language="uk"
+``` 
+or
+``` 
+--language="es"
+``` etc. 
+All languages you can find on site.
 
 Example:
-pytest --browser=firefox --language="uk" test_main_page.py
 
-Commands --browser_name and --language have default values "chrome" and "en", in case when we skipped these commands.
+```
+pytest --browser=firefox --language="uk" test_main_page.py
+```
+
+Commands --browser_name and --language have default values "chrome" and "en", in case when you skipped these commands.
 
 Also, it's required to do some steps:
 
