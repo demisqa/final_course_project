@@ -5,9 +5,13 @@ Link to the tested site: "https://selenium1py.pythonanywhere.com".
 ____
 ### Technologies: 
 Python 3.11.5
+
 Pytest 7.4.3
+
 Selenium 4.15.2
+
 Webdriver Manager 4.0.1
+
 python-dotenv 1.0.0
 
 
@@ -19,15 +23,19 @@ file "requirements.txt". You can do it by the commands:
 
 ```
 python3 -m venv <venv>
-``` to create virtual environment, where <venv> is name of your virtual environment;
+```
+to create virtual environment, where venv is name of your virtual environment;
 
 ```
 source <venv>/bin/activate
-``` to activate your virtual environment;
+```
+to activate your virtual environment;
 
 ```
 pip3 install -r requirements.txt
-```  to install requirements.
+```
+to install requirements.
+
 
 I use webdriver-manger from pip3, so you don't need to set a path to your WebDriver.
 
@@ -49,8 +57,8 @@ You can choose locale of the site, where tests will be run by the command:
 or
 ``` 
 --language="es"
-``` etc. 
-All languages you can find on site.
+```
+etc. All languages you can find on site.
 
 Example:
 
